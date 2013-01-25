@@ -36,6 +36,84 @@ GaPaste.prototype.fireChange = function(elem) {
 /**********************/
 /*** FILTER PASTERS ***/
 /**********************/
+
+GaPaste.prototype.pasteFilter_EXCLUDE = function() {
+    log('pasting Exclude');
+    var data = this.data;
+    document.querySelector('[name$="-name"]').value = data.name;
+    
+    this.setMarkedRadio('-typeCustom', "true");
+    document.querySelector('[name$="-typeCustom"]:checked').click();
+    this.setMarkedRadio('-filterType', "EXCLUDE");
+    document.querySelector('[name$="-filterType"]:checked').click();
+    
+    document.querySelector('[name$="-filterField"]').value = data.filterField;
+	document.querySelector('[name$="-filterExpression"]').value = data.filterExpression;
+	this.setMarkedRadio('-caseSensitive', data.caseSensitive);
+	return true;
+};
+
+GaPaste.prototype.pasteFilter_INCLUDE = function() {
+    log('pasting Include');
+    var data = this.data;
+    document.querySelector('[name$="-name"]').value = data.name;
+    
+    this.setMarkedRadio('-typeCustom', "true");
+    document.querySelector('[name$="-typeCustom"]:checked').click();
+    this.setMarkedRadio('-filterType', "INCLUDE");
+    document.querySelector('[name$="-filterType"]:checked').click();
+    
+    document.querySelector('[name$="-filterField"]').value = data.filterField;
+	document.querySelector('[name$="-filterExpression"]').value = data.filterExpression;
+	this.setMarkedRadio('-caseSensitive', data.caseSensitive);
+    return true;
+};
+
+GaPaste.prototype.pasteFilter_LOWER = function() {
+    log('pasting Lower');
+    var data = this.data;
+    document.querySelector('[name$="-name"]').value = data.name;
+    
+    this.setMarkedRadio('-typeCustom', "true");
+    document.querySelector('[name$="-typeCustom"]:checked').click();
+    this.setMarkedRadio('-filterType', "LOWER");
+    document.querySelector('[name$="-filterType"]:checked').click();
+    
+    document.querySelector('[name$="-filterField"]').value = data.filterField;
+    return true;
+};
+
+GaPaste.prototype.pasteFilter_UPPER = function() {
+    log('pasting Upper');
+    var data = this.data;
+    document.querySelector('[name$="-name"]').value = data.name;
+    
+    this.setMarkedRadio('-typeCustom', "true");
+    document.querySelector('[name$="-typeCustom"]:checked').click();
+    this.setMarkedRadio('-filterType', "UPPER");
+    document.querySelector('[name$="-filterType"]:checked').click();
+    
+    document.querySelector('[name$="-filterField"]').value = data.filterField;
+    return true;
+};
+
+GaPaste.prototype.pasteFilter_REPLACE = function() {
+    log('pasting Upper');
+    var data = this.data;
+    document.querySelector('[name$="-name"]').value = data.name;
+
+    this.setMarkedRadio('-typeCustom', "true");
+    document.querySelector('[name$="-typeCustom"]:checked').click();
+    this.setMarkedRadio('-filterType', "REPLACE");
+    document.querySelector('[name$="-filterType"]:checked').click();
+
+    document.querySelector('[name$="-filterField"]').value = data.filterField;
+	document.querySelector('[name$="-searchString"]').value = data.searchString;
+	document.querySelector('[name$="-replaceString"]').value = data.replaceString;
+	this.setMarkedRadio('-caseSensitive', data.caseSensitive);
+    return true;
+};
+
 GaPaste.prototype.pasteFilter_ADVANCED = function() {
     log('pasting Advanced');
     var data = this.data;
@@ -45,8 +123,7 @@ GaPaste.prototype.pasteFilter_ADVANCED = function() {
     document.querySelector('[name$="-typeCustom"]:checked').click();
     this.setMarkedRadio('-filterType', "ADVANCED");
     document.querySelector('[name$="-filterType"]:checked').click();
-    
-    
+
     document.querySelector('[name$="-customFilterA"]').value = data.customFilterA;
     document.querySelector('[name$="-customFilterB"]').value = data.customFilterB;
     document.querySelector('[name$="-customFilterC"]').value = data.customFilterC;
